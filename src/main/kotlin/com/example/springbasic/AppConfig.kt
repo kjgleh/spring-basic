@@ -8,15 +8,20 @@ import com.example.springbasic.member.MemberServiceImpl
 import com.example.springbasic.member.MemoryMemberRepository
 import com.example.springbasic.order.OrderService
 import com.example.springbasic.order.OrderServiceImpl
+import org.springframework.context.annotation.Bean
+import org.springframework.context.annotation.Configuration
 
+@Configuration
 class AppConfig {
 
+    @Bean
     fun memberService(): MemberService {
         return MemberServiceImpl(
             memberRepository(),
         )
     }
 
+    @Bean
     fun orderService(): OrderService {
         return OrderServiceImpl(
             memberRepository(),
@@ -24,10 +29,12 @@ class AppConfig {
         )
     }
 
+    @Bean
     fun memberRepository(): MemberRepository {
         return MemoryMemberRepository()
     }
 
+    @Bean
     fun discountPolicy(): DiscountPolicy {
         return FixDiscountPolicy()
     }
