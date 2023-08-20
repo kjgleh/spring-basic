@@ -20,4 +20,17 @@ class SingletonTest {
         // Assert
         assertThat(memberService1).isNotSameAs(memberService2)
     }
+
+    @Test
+    @DisplayName("싱글톤 패턴을 적용한 객체 사용")
+    fun `singleton service test`() {
+        // Arrange
+
+        // Act
+        val singletonService1 = SingletonService.getInstance()
+        val singletonService2 = SingletonService.getInstance()
+
+        // Assert
+        assertThat(singletonService1).isSameAs(singletonService2)
+    }
 }
