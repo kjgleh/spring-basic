@@ -4,6 +4,7 @@ import com.example.springbasic.AppConfig
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
+import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 class SingletonTest {
 
@@ -32,5 +33,19 @@ class SingletonTest {
 
         // Assert
         assertThat(singletonService1).isSameAs(singletonService2)
+    }
+
+    @Test
+    @DisplayName("스프링 컨테이너와 싱글톤")
+    fun `spring container test`() {
+        // Arrange
+        val ac = AnnotationConfigApplicationContext(AppConfig::class.java)
+
+        // Act
+        val memberService1 = ac.getBean("memberService")
+        val memberService2 = ac.getBean("memberService")
+
+        // Assert
+        assertThat(memberService1).isSameAs(memberService2)
     }
 }
